@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Registration and Login Page</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="registration-box">
+
+            <h2 class="heading-reg">Register</h2>
+
+            {%with messages = get_flashed_messages(category_filter=['register'])%}
+            {%if messages%}
+            <div class="message-container">
+
+
+                {% for message in messages%}
+                <p class="messages">{{message}}</p>
+                {%endfor%}
+
+            </div>
+            {%endif%}
+            {%endwith%}
+
+            <form action="/process" method="post">
+                <label for="">First Name:</label>
+                <input type="text" name="first_name">
+                <label for="">Last Name:</label>
+                <input type="text" name="last_name">
+                <label for="">Email:</label>
+                <input type="text" name="email">
+                <label for="">Password:</label>
+                <input type="password" name="password">
+                <label for="">Confirm Password:</label>
+                <input type="password" name="conf_password">
+                <input type="submit" value="Register" class="submit-btn" id="submit-reg">
+            </form>
+
+        </div>
+
+        <div class="login-box">
+            <h2 class="heading-log">Login</h2>
+
+            {%with messages = get_flashed_messages(category_filter=['login'])%}
+            {%if messages%}
+            <div class="message-container">
+
+
+                {% for message in messages%}
+                <p class="messages">{{message}}</p>
+                {%endfor%}
+
+            </div>
+            {%endif%}
+            {%endwith%}
+
+            <form action="/login" method="post">
+                <label for="email">Email:</label>
+                <input type="text" name="email">
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+                <input type="submit" value="Login" class="submit-btn" id="submit-log">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
